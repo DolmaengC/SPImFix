@@ -154,7 +154,10 @@ public class Repair {
 				// search candidate similar code block
 				SimpleFilter simpleFilter = new SimpleFilter(oneBuggyBlock);
 				
-				List<Pair<CodeBlock, Double>> candidates = simpleFilter.filter(src, 0.3);
+				// List<Pair<CodeBlock, Double>> candidates = simpleFilter.filter(src, 0.3);
+				String SPI_candidates_path = "/data2/sechang/final_result/125328_" + _subject.getName().substring(0, 1).toUpperCase() + _subject.getName().substring(1) + "-" + _subject.getId() + "/outputs/LCE/candidates/" ;
+				List<Pair<CodeBlock, Double>> candidates = simpleFilter.filter(SPI_candidates_path, 0.3);
+				candidates.addAll(simpleFilter.filter(src, 0.3));
 				List<String> source = null;
 				try {
 					source = JavaFile.readFileToList(file);
@@ -249,9 +252,11 @@ public class Repair {
 							// validate correctness of patch
 							switch (validate(logFile, oneBuggyBlock)) {
 							case COMPILE_FAILED:
+								System.out.println("COMPILE_FAILED");
 //								haveTryPatches.remove(replace);
 								break;
 							case SUCCESS:
+								System.out.println("SUCCESS");
 								String correctPatch = oneBuggyBlock.toSrcString().toString().replace("\\s*|\t|\r|\n", "");
 								if(patches.contains(correctPatch)){
 									continue;
@@ -275,6 +280,7 @@ public class Repair {
 								}
 								break; //remove passed revision
 							case TEST_FAILED:
+								System.out.println("TEST_FAILED");
 								if(legalModifications != null){
 									for(Integer index : modifySet){
 										legalModifications.add(modifications.get(index));

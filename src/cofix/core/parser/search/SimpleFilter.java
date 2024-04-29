@@ -72,6 +72,7 @@ public class SimpleFilter {
 		List<Pair<CodeBlock, Double>> filtered = new ArrayList<>();
 		CollectorVisitor collectorVisitor = new CollectorVisitor();
 		for(String file : files){
+			System.out.println("SimpleFilter file: " + file);
 			CompilationUnit unit = JavaFile.genASTFromFile(file);
 			collectorVisitor.setUnit(file, unit);
 			unit.accept(collectorVisitor);

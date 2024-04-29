@@ -17,7 +17,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.WildcardType;
 
-import com.sun.xml.internal.bind.v2.runtime.Name;
+// import com.sun.xml.internal.bind.v2.runtime.Name;
 
 import cofix.common.util.Pair;
 import cofix.core.metric.Literal;

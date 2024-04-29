@@ -29,6 +29,7 @@ import cofix.core.parser.ProjectInfo;
 import cofix.test.purification.CommentTestCase;
 import cofix.test.purification.Purification;
 import sbfl.locator.SBFLocator;
+import cofix.common.localization.MFLocalization;
 
 /**
  * @author Jiajun
@@ -108,8 +109,8 @@ public class Main {
 			} else {
 				currentFailedTests.addAll(purifiedFailedTestCases);
 			}
-			SBFLocator sbfLocator = new SBFLocator(subject);
-//			MFLocalization sbfLocator = new MFLocalization(subject);
+			// SBFLocator sbfLocator = new SBFLocator(subject);
+			MFLocalization sbfLocator = new MFLocalization(subject);
 			sbfLocator.setFailedTest(currentFailedTests);
 			
 			Repair repair = new Repair(subject, sbfLocator);
